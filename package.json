@@ -1,0 +1,31 @@
+{
+  "name": "node-csv-loader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "nodecsvloader.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint csv2mysql.js",
+    "jshint": "jshint csv2mysql.js"
+  },
+  "author": {
+    "name": "Ezequiel Falduto",
+    "email": "efalduto.com",
+    "url": "http://braint.ly/"
+  },
+  "jshintConfig": {
+    "esnext": true,
+    "undef": true,
+    "unused": true,
+    "predef": [
+      "module",
+      "require"
+    ]
+  },
+  "license": "MIT",
+  "dependencies": {
+    "csv-streamify": "^3.0.3",
+    "mysql": "^2.10.2",
+    "object-merge": "^2.5.1"
+  }
+}
