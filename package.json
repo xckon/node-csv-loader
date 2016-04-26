@@ -5,8 +5,8 @@
   "main": "nodecsvloader.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint csv2mysql.js",
-    "jshint": "jshint csv2mysql.js"
+    "lint": "eslint nodecsvloader.js",
+    "jshint": "jshint nodecsvloader.js"
   },
   "author": {
     "name": "Ezequiel Falduto",
