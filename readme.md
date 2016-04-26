@@ -8,7 +8,7 @@ Simple library to import a .csv into MySQL (at least for now).
 From NPM:
 
 ```shell
-npm install csv2mysql
+npm install node-csv-loader
 ```
 
 ## Notes
