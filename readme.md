@@ -1,5 +1,4 @@
-node-csv-loader
-===============
+# node-csv-loader [![NPM Version](https://img.shields.io/npm/v/node-csv-loader.svg)](https://npmjs.org/package/node-csv-loader)
 
 Simple library to import a .csv into MySQL (at least for now).
 
@@ -19,23 +18,30 @@ npm install node-csv-loader
 
 ## Usage
 
-```javascript
+```js
 var CSVLoader = require('node-csv-loader');
 new CSVLoader({
-    database: mysqlConfig,
-    csvPath: 'path/to/file.csv',
-    tableName: 'MySQLTableName',
-    map: {
-        'FieldToName1': {value: 'const'},
-        'FieldToName2': 'const',
-        'FieldToName3': {field: 'fieldNameOnCSV'},
-        'FieldToName4': {field: 'fieldNameOnCSV', adapter: function(value) {
-            return 'Demo: ' + value;
-        },
+  database: mysqlConfig,
+  csvPath: 'path/to/file.csv',
+  tableName: 'MySQLTableName',
+  map: {
+    'FieldToName1': {
+      value: 'const'
     },
-    onSuccess: function(statistics) {
-        console.dir(statistics);
+    'FieldToName2': 'const',
+    'FieldToName3': {
+      field: 'fieldNameOnCSV'
+    },
+    'FieldToName4': {
+      field: 'fieldNameOnCSV',
+      adapter: function(value) {
+        return 'Demo: ' + value;
+      }
     }
+  },
+  onSuccess: function(statistics) {
+      console.dir(statistics);
+  }
 }).run();
 ```
 
@@ -43,11 +49,11 @@ new CSVLoader({
 
 The recommended way to establish a connection is this:
 
-```javascript
+```js
 var mysqlConfig = {
-  host     : 'example.org',
-  user     : 'bob',
-  password : 'secret'
+  host: 'example.org',
+  user: 'bob',
+  password: 'secret'
 });
 ```
 
@@ -58,27 +64,34 @@ var mysqlConfig = {
 The map is an object container the mapping between the .csv and MySql, where each attribute represents the database field, and the value represents:
 
 ### Constants
-```javascript
+```js
 {
-    'DatabaseField1': <constant>,
-    'DatabaseField2': {value: <constant>}    
+  'DatabaseField1': <constant>,
+  'DatabaseField2': {
+    value: <constant>
+  }
 };
 ```
 
 ### CSV Fields
-```javascript
+```js
 {
-    'DatabaseField1': {field: 'CSV Field Name'},
-    'DatabaseField2': {field: 'CSV Field Name', adapter: function(value) {
-        return 'Hello: ' + value;
-    }}
+  'DatabaseField1': {
+    field: 'CSV Field Name'
+  },
+  'DatabaseField2': {
+    field: 'CSV Field Name',
+    adapter: function(value) {
+      return 'Hello: ' + value;
+    }
+  }
 };
 ```
 
 Optionally you can add an "adapter" attribute to the field, which receives the following parameters:
 - *value*: Current field value.
-- *rowMap*: [Same as described below on the filter callback](##filter).
-- *rowValues*: [Same as described below the filter callback](##filter).
+- *rowMap*: [Same as described below on the filter callback](#filter).
+- *rowValues*: [Same as described below on the filter callback](#filter).
 
 
 
@@ -94,39 +107,35 @@ Size of the object buffer to persist into MySQL.
 Type: `null|function` | **Default: null**
 
 Callback to filter the rows loaded from the .csv. The function must return a boolean.
-```javascript
-    /*
-    * @param  {columnName: index} rowMap Object containing {columnName: index}
-    * loaded from .csv
-    * @param  [] rowValues Array containing all the row values.
-    * @return boolean Return true, if the row is valid.*/
-    filter: function(rowMap, rowValues) {
-
-        // To get an specific column value: rowValues[columnName['{fieldName}']].
-        // * columnName['{fieldName}'] -> returns the index (from rowValues),
-        // that matches the field.
-
-        return rowValues[rowMap['Active']] === 'True';
-    }
+```js
+  /*
+  * @param  {columnName: index} rowMap Object containing {columnName: index}
+  * loaded from .csv
+  * @param  [] rowValues Array containing all the row values.
+  * @return boolean Return true, if the row is valid.*/
+  filter: function(rowMap, rowValues) {
+    // To get an specific column value: rowValues[columnName['{fieldName}']].
+    // * columnName['{fieldName}'] -> returns the index (from rowValues),
+    // that matches the field.
+    return rowValues[rowMap['Active']] === 'True';
+  }
 ```
 
 ### onSuccess
 Type: `null|function` | **Default: null**
 Callback triggered when the import to MySQL is done.
-```javascript
-    /*
-    * @param  {totalRecords: integer,
-    *         skippedRecords: integer,
-    *         executionTime: integer} Object with process statistics.
-    */
-    onSuccess: function(statistics) {
-
-        // To get an specific column value: rowValues[columnName['{fieldName}']].
-        // * columnName['{fieldName}'] -> returns the index (from rowValues),
-        // that matches the field.
-
-        console.dir(statistics);
-    }
+```js
+  /*
+  * @param  {totalRecords: integer,
+  *         skippedRecords: integer,
+  *         executionTime: integer} Object with process statistics.
+  */
+  onSuccess: function(statistics) {
+    // To get an specific column value: rowValues[columnName['{fieldName}']].
+    // * columnName['{fieldName}'] -> returns the index (from rowValues),
+    // that matches the field.
+    console.dir(statistics);
+  }
 ```
 
 ## Callbacks Notes
@@ -142,6 +151,7 @@ The filter & adapter function are executed into the library context, which allow
  - Add PK definition support
  - Improve conventions-over-configurations
 
-## License
+## Release History
 
-MIT
+ * 2016-05-11   v1.1.0   Update package.json and better docs.
+ * 2016-04-20   v1.0.0   Initial version.

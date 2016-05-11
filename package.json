@@ -1,7 +1,7 @@
 {
   "name": "node-csv-loader",
-  "version": "1.0.2",
-  "description": "",
+  "version": "1.1.0",
+  "description": "Simple library to import a CSV file into MySQL.",
   "main": "nodecsvloader.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,6 +13,7 @@
     "email": "efalduto.com",
     "url": "http://braint.ly/"
   },
+  "repository": "xckon/node-csv-loader",
   "jshintConfig": {
     "esnext": true,
     "undef": true,
