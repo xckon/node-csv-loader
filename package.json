@@ -1,32 +1,38 @@
 {
-  "name": "node-csv-loader",
-  "version": "1.1.0",
-  "description": "Simple library to import a CSV file into MySQL.",
-  "main": "nodecsvloader.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint nodecsvloader.js",
-    "jshint": "jshint nodecsvloader.js"
-  },
-  "author": {
-    "name": "Ezequiel Falduto",
-    "email": "efalduto.com",
-    "url": "http://braint.ly/"
-  },
-  "repository": "xckon/node-csv-loader",
-  "jshintConfig": {
-    "esnext": true,
-    "undef": true,
-    "unused": true,
-    "predef": [
-      "module",
-      "require"
-    ]
-  },
-  "license": "MIT",
-  "dependencies": {
-    "csv-streamify": "^3.0.3",
-    "mysql": "^2.10.2",
-    "object-merge": "^2.5.1"
-  }
+    "name": "node-csv-loader",
+    "version": "1.1.0",
+    "description": "Simple library to import a CSV file into MySQL.",
+    "main": "nodecsvloader.js",
+    "scripts": {
+        "jshint": "jshint nodecsvloader.js",
+        "test": "jshint nodecsvloader.js && mocha"
+    },
+    "author": {
+        "name": "Ezequiel Falduto",
+        "email": "efalduto.com",
+        "url": "http://braint.ly/"
+    },
+    "repository": "xckon/node-csv-loader",
+    "jshintConfig": {
+        "curly": true,
+        "esnext": true,
+        "undef": true,
+        "unused": true,
+        "mocha": true,
+        "predef": [
+            "module",
+            "require"
+        ]
+    },
+    "license": "MIT",
+    "dependencies": {
+        "csv-streamify": "^3.0.3",
+        "mysql": "^2.10.2",
+        "object-merge": "^2.5.1"
+    },
+    "devDependencies": {
+        "jshint": "^2.9.4",
+        "mocha": "^3.1.2",
+        "mysql": "^2.10.2"
+    }
 }
