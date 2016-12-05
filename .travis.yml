@@ -1,0 +1,16 @@
+sudo: false
+language: node_js
+services:
+  - mysql
+
+cache:
+  directories:
+    - node_modules
+
+branches:
+  only:
+  - master
+  - develop
+
+before_install:
+  - mysql -e "create database IF NOT EXISTS ncl_test_database;" -uxckon -psecret

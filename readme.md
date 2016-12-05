@@ -38,11 +38,10 @@ new CSVLoader({
         return 'Demo: ' + value;
       }
     }
-  },
-  onSuccess: function(statistics) {
-      console.dir(statistics);
   }
-}).run();
+}).run(function(statistics) {
+  console.dir(statistics);
+});
 ```
 
 ## Setting up connections
@@ -53,7 +52,8 @@ The recommended way to establish a connection is this:
 var mysqlConfig = {
   host: 'example.org',
   user: 'bob',
-  password: 'secret'
+  password: 'secret',
+  database: 'hello_world'
 });
 ```
 
@@ -144,14 +144,8 @@ The filter & adapter function are executed into the library context, which allow
 
 ## Todos
 
- - Write Tests
  - Add Code Comments
  - Improve dependency management
  - Improve configuration
  - Add PK definition support
  - Improve conventions-over-configurations
-
-## Release History
-
- * 2016-05-11   v1.1.0   Update package.json and better docs.
- * 2016-04-20   v1.0.0   Initial version.
