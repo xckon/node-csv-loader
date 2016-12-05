@@ -1,4 +1,4 @@
-# node-csv-loader [![NPM Version](https://img.shields.io/npm/v/node-csv-loader.svg)](https://npmjs.org/package/node-csv-loader)
+# node-csv-loader [![NPM Version](https://img.shields.io/npm/v/node-csv-loader.svg)](https://npmjs.org/package/node-csv-loader) [![Build Status](https://travis-ci.org/xckon/node-csv-loader.svg?branch=master)](https://travis-ci.org/xckon/node-csv-loader)
 
 Simple library to import a .csv into MySQL (at least for now).
 
