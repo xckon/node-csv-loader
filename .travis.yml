@@ -13,4 +13,4 @@ branches:
   - develop
 
 before_install:
-  - mysql -e "create database IF NOT EXISTS ncl_test_database;" -uxckon -psecret
+  - mysql -e "create database IF NOT EXISTS ncl_test_database;" -root

@@ -24,8 +24,7 @@ var config = {
 	},
 	database: {
 		host: '127.0.0.1',
-		user: 'xckon',
-		password: 'secret',
+		user: 'root',
 		database: 'ncl_test_database'
 	}
 };
