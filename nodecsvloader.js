@@ -16,11 +16,7 @@ function CSVLoader(config) {
         map: [],
         tableName: null,
         blockSize: 100,
-        filter: null,
-
-        onSuccess: function(statistics) {
-            return statistics;
-        }
+        filter: null
     };
 
     this.validate = function() {
@@ -38,13 +34,13 @@ function CSVLoader(config) {
             },
 
             map: function(value) {
-                return typeof value === "object" && Object.keys(value).length > 0;
+                return typeof value === 'object' && Object.keys(value).length > 0;
             }
         };
 
         for(var configName in requiredAttributes) {
             if(requiredAttributes[configName].apply(null, [this.config[configName]]) === false) {
-                throw new Error("Invalid/missing config." + configName);
+                throw new Error('Invalid/missing config.' + configName);
             }
         }
     };
@@ -83,7 +79,11 @@ function CSVLoader(config) {
     this.initConnection();
 }
 
-CSVLoader.prototype.run = function() {
+CSVLoader.prototype.getConnection = function() {
+    return this.connector;
+};
+
+CSVLoader.prototype.run = function(done) {
     var startTime = new Date().getTime();
     var self = this;
 
@@ -120,7 +120,10 @@ CSVLoader.prototype.run = function() {
                     if(objectBuffer.length === self.config.blockSize) {
 
                         self.connector.query(query, [objectBuffer.slice(0, self.config.blockSize)] , function(err) {
-                            if(err) throw err;
+                            if(err) {
+                                throw err;
+                            }
+
                             executionControl -= self.config.blockSize;
                         });
 
@@ -138,14 +141,16 @@ CSVLoader.prototype.run = function() {
         })
         .on('end', function() {
             self.connector.query(query, [objectBuffer] , function(err) {
-                if(err) throw err;
+                if(err) {
+                    throw err;
+                }
                 executionControl -= objectBuffer.length;
             });
 
             var endInterval = setInterval(function() {
                 if(executionControl === 0) {
                     clearTimeout(endInterval);
-                    self.config.onSuccess.apply(self, [{
+                    done.apply(self, [{
                         totalRecords: totalRecords,
                         skippedRecords: skippedRecords,
                         executionTime: new Date().getTime() - startTime
