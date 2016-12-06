@@ -1,6 +1,6 @@
 {
     "name": "node-csv-loader",
-    "version": "1.2.0",
+    "version": "2.0.0",
     "description": "Simple library to import a CSV file into MySQL.",
     "main": "nodecsvloader.js",
     "scripts": {
